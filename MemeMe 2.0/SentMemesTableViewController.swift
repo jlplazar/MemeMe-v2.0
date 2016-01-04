@@ -38,7 +38,7 @@ class SentMemesTableViewController: UITableViewController {
         if editingStyle == .Delete {
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.memesList.removeAtIndex(indexPath.row)
-            self.tableView.reloadData()
+            tableView.reloadData()
         }
     }
     
@@ -48,14 +48,14 @@ class SentMemesTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //Open detail view
-        let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("memeDetailVC")
+        let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("memeDetailVC")
         let detailVC = object as! DetailViewController
         
         //Populate view controller with data from the selected item
         detailVC.memeIndex = indexPath.row
         
         //Present the view controller using navigation
-        self.navigationController!.pushViewController(detailVC, animated: true)
+        navigationController!.pushViewController(detailVC, animated: true)
     }
     
 

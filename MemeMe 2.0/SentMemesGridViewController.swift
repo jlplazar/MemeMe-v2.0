@@ -39,21 +39,23 @@ class SentMemesGridViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         //Open detail view
-        let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("memeDetailVC")
+        let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("memeDetailVC")
         let detailVC = object as! DetailViewController
         
         //Populate view controller with data from the selected item
         detailVC.memeIndex = indexPath.row
         
         //Present the view controller using navigation
-        self.navigationController!.pushViewController(detailVC, animated: true)
+        navigationController!.pushViewController(detailVC, animated: true)
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         
         let dimension = (size.width - 2 * space ) / 3.0
-        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
+        if flowLayout != nil {
+            flowLayout.itemSize = CGSize(width: dimension, height: dimension)
+        }
     }
     
 }
